@@ -31,14 +31,46 @@
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="201dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
             android:layout_marginTop="55dp"
-            android:text="Name: Soheil Mahdizadeh"
+            android:ellipsize="end"
+            android:maxWidth="175dp"
+            android:maxLines="1"
+            android:text="Name: Soheil Mahdizadehgfgdfgdfgdfg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.589"
             app:layout_constraintStart_toEndOf="@+id/myImage"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/paragraph_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="1dp"></LinearLayout>
+
+        <ImageButton
+            android:id="@+id/call_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toStartOf="@+id/email_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/stat_sys_phone_call" />
+
+        <ImageButton
+            android:id="@+id/email_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
