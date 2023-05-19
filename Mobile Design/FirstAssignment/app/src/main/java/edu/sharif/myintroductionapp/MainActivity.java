@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -24,7 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Toast welcomeToast;
-    private static final int toastDuration = 100000;
+    private static final int toastDuration = 10000;
     private List<Paragraph> paragraphs;
     private String myPhoneNumber = "tel:09380663225";
     private String myEmail = "soheil.mh2000@gmail.com,";
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Showing Toast!
+        showToast();
         setContentView(R.layout.activity_main);
         // Updating nyNameText with myName
         myNameText = findViewById(R.id.nameTextView);
@@ -53,8 +56,48 @@ public class MainActivity extends AppCompatActivity {
 
         // Configuring Night/Day switch button!
         switchMaterial = findViewById(R.id.switchTheme);
+        configureNightAndDaySwitchButton(switchMaterial);
+
+        // Setting the current Theme!
+        setSwitchText(switchMaterial);
 
 
+//
+//        Runnable r = new ToastThread(welcomeToast);
+//        new Thread(r).start();
+//        this.welcomeToast.show();
+
+    }
+
+    private void showToast() {
+        welcomeToast = Toast.makeText(MainActivity.this, "Welcome to my app!", Toast.LENGTH_LONG);
+        CountDownTimer toastCountDown = new CountDownTimer(toastDuration, 4100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                welcomeToast.show();
+            }
+
+            @Override
+            public void onFinish() {
+               welcomeToast.cancel();
+            }
+        };
+
+        welcomeToast.show();
+        toastCountDown.start();
+    }
+
+    private void setSwitchText(SwitchMaterial switchMaterial) {
+        boolean isNightModeOn = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES;
+        switchMaterial.setChecked(isNightModeOn);
+        if (isNightModeOn) {
+            switchMaterial.setText("Night Mode ");
+        } else {
+            switchMaterial.setText("Light Mode ");
+        }
+    }
+
+    private void configureNightAndDaySwitchButton(SwitchMaterial switchMaterial){
         switchMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -66,40 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // Setting the current Theme!
-        setSwitchText(switchMaterial);
-
-        // Showing Toast!
-//        welcomeToast = Toast.makeText(MainActivity.this, "Welcome to my app!", Toast.LENGTH_LONG);
-//        CountDownTimer toastCountDown = new CountDownTimer(15000, 1500) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                welcomeToast.show();
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//               welcomeToast.cancel();
-//            }
-//        };
-//
-//        welcomeToast.show();
-//        //toastCountDown.start();
-//        Runnable r = new ToastThread(welcomeToast);
-//        new Thread(r).start();
-//        this.welcomeToast.show();
-
-    }
-
-    private void setSwitchText(SwitchMaterial switchMaterial) {
-        boolean isNightModeOn = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES;
-        switchMaterial.setChecked(isNightModeOn);
-        if (isNightModeOn) {
-            switchMaterial.setText("Night Mode ");
-        } else {
-            switchMaterial.setText("Light Mode ");
-        }
     }
 
     private void configureCallAndEmailAndName() {
