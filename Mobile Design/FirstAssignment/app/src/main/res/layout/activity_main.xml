@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/MainScrollView"
     android:layout_width="409dp"
-    android:layout_height="729dp"
+    android:layout_height="fill_parent"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp"
+
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         tools:context=".MainActivity">
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
     private View createParagraphView(Paragraph paragraph){
         View paragraphView = getLayoutInflater().inflate(R.layout.paragraph_layout, null, false);
         TextView titleTextView = (TextView) paragraphView.findViewById(R.id.paragraph_title);
+        titleTextView.setTypeface(titleTextView.getTypeface(), Typeface.BOLD);
         TextView textTextView = (TextView) paragraphView.findViewById(R.id.paragraph_text);
         titleTextView.setText(paragraph.get_title());
         textTextView.setText(paragraph.get_text());
