@@ -1,6 +1,4 @@
-package com.example.firstassignment;
-
-import java.util.ArrayList;
+package edu.sharif.myintroductionapp;
 
 public class Paragraph {
     //public static ArrayList<Paragraph> allParagraphs = new ArrayList<Paragraph>();

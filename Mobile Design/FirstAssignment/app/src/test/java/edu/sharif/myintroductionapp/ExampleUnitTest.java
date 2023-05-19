@@ -1,4 +1,4 @@
-package com.example.firstassignment;
+package edu.sharif.myintroductionapp;
 
 import org.junit.Test;
 

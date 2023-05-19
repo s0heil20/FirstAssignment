@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.firstassignment'
+    namespace 'edu.sharif.myintroductionapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.firstassignment"
+        applicationId "edu.sharif.myintroductionapp"
         minSdk 24
         targetSdk 33
         versionCode 1

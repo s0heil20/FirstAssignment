@@ -1,4 +1,4 @@
-package com.example.firstassignment;
+package edu.sharif.myintroductionapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -22,7 +20,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,16 +28,21 @@ public class MainActivity extends AppCompatActivity {
     private List<Paragraph> paragraphs;
     private String myPhoneNumber = "tel:09380663225";
     private String myEmail = "soheil.mh2000@gmail.com,";
+    private String myName = "Soheil Mahdizadeh Zoolpirani";
     private LinearLayout paragraphListLayout;
     private ImageButton callButton;
     private ImageButton emailButton;
     private SwitchMaterial switchMaterial;
+    private TextView myNameText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Updating nyNameText with myName
+        myNameText = findViewById(R.id.nameTextView);
+        myNameText.setText(myName);
 
         // Parsing Json and showing the paragraphs!
         parseJsonStringToJavaObject("myInfo.json");
