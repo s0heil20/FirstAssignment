@@ -22,6 +22,9 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
+class FirstTime{
+    public static boolean isFirstTimeOpeningApp = true;
+}
 public class MainActivity extends AppCompatActivity {
 
     private Toast welcomeToast;
@@ -36,12 +39,14 @@ public class MainActivity extends AppCompatActivity {
     private SwitchMaterial switchMaterial;
     private TextView myNameText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Showing Toast!
-        showToast();
+        // Showing Toast if first time!
+        if (FirstTime.isFirstTimeOpeningApp) {
+            showToast();
+            FirstTime.isFirstTimeOpeningApp = false;
+        }
         setContentView(R.layout.activity_main);
         // Updating nyNameText with myName
         myNameText = findViewById(R.id.nameTextView);
@@ -60,12 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting the current Theme!
         setSwitchText(switchMaterial);
-
-
-//
-//        Runnable r = new ToastThread(welcomeToast);
-//        new Thread(r).start();
-//        this.welcomeToast.show();
 
     }
 
@@ -167,25 +166,4 @@ public class MainActivity extends AppCompatActivity {
         return paragraphView;
     }
 
-    private class ToastThread implements Runnable{
-        private Toast toast;
-        public ToastThread(Toast toast){
-            this.toast = toast;
-        }
-        public void run() {
-            // show toast for 10 seconds
-            for (int i = 0;i < 10;i++) {
-                this.toast.show();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                this.toast.cancel();
-                //System.out.println("Im here" + i);
-
-            }
-
-        }
-    }
 }
