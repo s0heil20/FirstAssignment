@@ -1,6 +1,7 @@
 package com.example.firstassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,16 +9,19 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout paragraphListLayout;
     private ImageButton callButton;
     private ImageButton emailButton;
+    private SwitchMaterial switchMaterial;
 
 
     @Override
@@ -41,6 +46,27 @@ public class MainActivity extends AppCompatActivity {
         paragraphListLayout = findViewById(R.id.paragraph_list);
         addParagraphsToLayout(paragraphListLayout);
         configureCallAndEmailAndName();
+
+
+        // Configuring Night/Day switch button!
+        switchMaterial = findViewById(R.id.switchTheme);
+
+
+        switchMaterial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    buttonView.setText("Night Mode");
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });
+
+        // Setting the current Theme!
+        setSwitchText(switchMaterial);
+
         // Showing Toast!
 //        welcomeToast = Toast.makeText(MainActivity.this, "Welcome to my app!", Toast.LENGTH_LONG);
 //        CountDownTimer toastCountDown = new CountDownTimer(15000, 1500) {
@@ -61,6 +87,16 @@ public class MainActivity extends AppCompatActivity {
 //        new Thread(r).start();
 //        this.welcomeToast.show();
 
+    }
+
+    private void setSwitchText(SwitchMaterial switchMaterial) {
+        boolean isNightModeOn = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES;
+        switchMaterial.setChecked(isNightModeOn);
+        if (isNightModeOn) {
+            switchMaterial.setText("Night Mode ");
+        } else {
+            switchMaterial.setText("Light Mode ");
+        }
     }
 
     private void configureCallAndEmailAndName() {
